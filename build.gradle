@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.4'
+	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
@@ -21,8 +21,12 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-	// https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter
-//	implementation 'io.springfox:springfox-boot-starter:2.9.2'
+	
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	implementation 'mysql:mysql-connector-java:8.0.28'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	
 }
 
 tasks.named('test') {
