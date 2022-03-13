@@ -17,4 +17,9 @@ public class CloudifiersExceptionHandler {
 				new UserEntityResponse(Boolean.FALSE, Error.USER_NOT_FOUND.getErrorCode(), null),
 				HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(value = { Exception.class })
+	public ResponseEntity<Void> handleInternalServerError() {
+		return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
