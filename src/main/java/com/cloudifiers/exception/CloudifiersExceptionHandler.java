@@ -6,20 +6,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cloudifiers.model.Error;
-import com.cloudifiers.model.UserEntityResponse;
+import com.cloudifiers.model.ResponseStatus;
 
 @ControllerAdvice
 public class CloudifiersExceptionHandler {
 
 	@ExceptionHandler(value = { NoUserFoundException.class })
-	public ResponseEntity<UserEntityResponse> handleNoUserFoundError() {
-		return new ResponseEntity<UserEntityResponse>(
-				new UserEntityResponse(Boolean.FALSE, Error.USER_NOT_FOUND.getErrorCode(), null),
-				HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStatus> handleNoUserFoundError() {
+		return new ResponseEntity<ResponseStatus>(
+				new ResponseStatus(Boolean.FALSE, Error.USER_NOT_FOUND.getErrorCode()), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = { Exception.class })
-	public ResponseEntity<Void> handleInternalServerError() {
-		return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<ResponseStatus> handleInternalServerError() {
+		return new ResponseEntity<ResponseStatus>(
+				new ResponseStatus(Boolean.FALSE, Error.INTERNAL_SERVER_ERROR.getErrorCode()),
+				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

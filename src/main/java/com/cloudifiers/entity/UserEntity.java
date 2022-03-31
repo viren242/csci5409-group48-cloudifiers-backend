@@ -22,22 +22,26 @@ public class UserEntity {
 	@JsonProperty("userId")
 	private Integer userId;
 
+	@Column(name = "PROFILE_URL", length = 200, nullable = true, unique = false)
+	@JsonProperty("profileUrl")
+	private String profileUrl;
+
 	@Column(name = "FIRST_NAME", length = 200, nullable = false, unique = false)
 	@JsonProperty("firstName")
 	private String firstName;
-	
+
 	@Column(name = "LAST_NAME", length = 200, nullable = false, unique = false)
 	@JsonProperty("lastName")
 	private String lastName;
-	
+
 	@Column(name = "EMAIL", length = 200, nullable = false, unique = true)
 	@JsonProperty("email")
 	private String email;
-	
+
 	@Column(name = "PASSWORD", length = 200, nullable = false, unique = false)
 	@JsonProperty("password")
 	private String password;
-	
+
 	@Column(name = "GENDER_ID")
 	@JsonProperty("genderId")
 	private Integer genderId;
