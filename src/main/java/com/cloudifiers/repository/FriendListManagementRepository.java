@@ -1,6 +1,6 @@
 package com.cloudifiers.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.cloudifiers.constants.CloudifiersConstants.DatabaseConstants;
 import com.cloudifiers.constants.CloudifiersConstants.ParameterConstants;
+import com.cloudifiers.entity.FriendEntity;
 import com.cloudifiers.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+public interface FriendListManagementRepository extends JpaRepository<FriendEntity, FriendEntity.FriendId> {
 
-	@Query(value = DatabaseConstants.FETCH_USER_QUERY)
-	public Optional<UserEntity> fetchUser(@Param(ParameterConstants.EMAIL) String email,
-			@Param(ParameterConstants.PASSWORD) String password);
+	@Query(value = DatabaseConstants.FETCH_FRIENDS_QUERY)
+	List<UserEntity> findFriendsOf(@Param(ParameterConstants.USER_ID) Integer userId);
 
 }

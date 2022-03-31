@@ -16,6 +16,7 @@ import com.cloudifiers.constants.CloudifiersConstants.ControllerInfo;
 import com.cloudifiers.entity.UserEntity;
 import com.cloudifiers.model.Error;
 import com.cloudifiers.model.LoginRequestModel;
+import com.cloudifiers.model.ResponseStatus;
 import com.cloudifiers.model.UserEntityResponse;
 import com.cloudifiers.service.IUserManagementService;
 
@@ -32,23 +33,23 @@ public class UserManagementController {
 
 	@ApiOperation(value = ApiEndPoints.FETCH_USER_DESC, response = UserEntityResponse.class)
 	@GetMapping(ApiEndPoints.FETCH_USER_URL)
-	public ResponseEntity<UserEntityResponse> fetchUser(@PathVariable("userId") Integer userId) throws Exception {
-		return new ResponseEntity<UserEntityResponse>(new UserEntityResponse(Boolean.TRUE,
-				Error.NO_ERROR.getErrorCode(), userManagementService.fetchUser(userId)), HttpStatus.OK);
+	public ResponseEntity<ResponseStatus> fetchUser(@PathVariable("userId") Integer userId) throws Exception {
+		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				userManagementService.fetchUser(userId)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.SAVE_USER_DESC, response = UserEntityResponse.class)
 	@PostMapping(ApiEndPoints.SAVE_USER_URL)
-	public ResponseEntity<UserEntityResponse> saveUser(@RequestBody UserEntity userEntity) {
-		return new ResponseEntity<UserEntityResponse>(new UserEntityResponse(Boolean.TRUE,
+	public ResponseEntity<ResponseStatus> saveUser(@RequestBody UserEntity userEntity) {
+		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE,
 				Error.NO_ERROR.getErrorCode(), userManagementService.saveUser(userEntity)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.LOGIN_DESC, response = UserEntityResponse.class)
 	@PostMapping(ApiEndPoints.LOGIN_URL)
-	public ResponseEntity<UserEntityResponse> fetchUser(@RequestBody LoginRequestModel loginRequestModel)
+	public ResponseEntity<ResponseStatus> fetchUser(@RequestBody LoginRequestModel loginRequestModel)
 			throws Exception {
-		return new ResponseEntity<UserEntityResponse>(new UserEntityResponse(Boolean.TRUE,
+		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE,
 				Error.NO_ERROR.getErrorCode(), userManagementService.fetchUser(loginRequestModel)), HttpStatus.OK);
 	}
 }
