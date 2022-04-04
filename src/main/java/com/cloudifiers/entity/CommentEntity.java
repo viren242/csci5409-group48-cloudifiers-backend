@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Entity
-@Table(name = "COMMENT", schema = "CLOUDIFIERS")
+@Table(name = "COMMENT")
 @Data
 public class CommentEntity {
 
