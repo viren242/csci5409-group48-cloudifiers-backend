@@ -1,5 +1,6 @@
 package com.cloudifiers.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 	public Optional<UserEntity> fetchUser(@Param(ParameterConstants.EMAIL) String email,
 			@Param(ParameterConstants.PASSWORD) String password);
 
+	@Query(value = DatabaseConstants.SEARCH_USER_QUERY)
+	public List<UserEntity> searchUser(@Param(ParameterConstants.KEYWORD) String keyword);
 }
