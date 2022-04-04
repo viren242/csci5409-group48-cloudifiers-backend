@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.cloudifiers.model.Error;
 import com.cloudifiers.model.ResponseStatus;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class CloudifiersExceptionHandler {
 
 	@ExceptionHandler(value = { NoUserFoundException.class })
