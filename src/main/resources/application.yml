@@ -1,0 +1,12 @@
+cloud:
+  aws:
+    credentials:
+      access-key-id: ASIAZ7ZFBDOWFTXBSKZG
+      secret-access-key: Y8jKJDputQIW/EEJvkoPtYjFzhWAR4qmwQ+i3Cos
+      session-token: FwoGZXIvYXdzEPT//////////wEaDJ+KTRnr1t3Y5GsgISLAAQqkL8R4fKq2LYtsgbNgLOMfz9p3z/VHTi2/Id9/d1Wj2jEZXwtJ4/85IwOsmXXPZlmD2Ze2lE1nPw0ejnIzK3kFppMwRxlITNhrYV0edD6bnUXElhtJHLpuSiAwJLWwvElyHLa8om9v15wnNE2/DfJMlmkjXE55cGNCZaP9GBattsPofk+4ZACK2LWmHRC10AYQfAvnDjuAev14MKigzchMh9sjfnz0TRZMhoO2r3HerTI8DMdncgnxma3vfsal+Sil96ySBjIth+I2+UoVfq89zijazeuQ7udaGFXqHE/HdGKrUgGkZJW/Oi/Pkj9bJWR37o0A
+    region:
+      static: us-east-1
+      auto: false
+    secret-manager:
+      secret-name: cloudifiers-secret
+      secret-region: us-east-1
