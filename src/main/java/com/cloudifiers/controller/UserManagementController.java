@@ -17,6 +17,7 @@ import com.cloudifiers.entity.UserEntity;
 import com.cloudifiers.model.Error;
 import com.cloudifiers.model.LoginRequestModel;
 import com.cloudifiers.model.ResponseStatus;
+import com.cloudifiers.model.UserEntityListResponse;
 import com.cloudifiers.model.UserEntityResponse;
 import com.cloudifiers.service.IUserManagementService;
 
@@ -40,16 +41,22 @@ public class UserManagementController {
 
 	@ApiOperation(value = ApiEndPoints.SAVE_USER_DESC, response = UserEntityResponse.class)
 	@PostMapping(ApiEndPoints.SAVE_USER_URL)
-	public ResponseEntity<ResponseStatus> saveUser(@RequestBody UserEntity userEntity) {
-		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE,
-				Error.NO_ERROR.getErrorCode(), userManagementService.saveUser(userEntity)), HttpStatus.OK);
+	public ResponseEntity<ResponseStatus> saveUser(@RequestBody UserEntity userEntity) throws Exception {
+		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				userManagementService.saveUser(userEntity)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.LOGIN_DESC, response = UserEntityResponse.class)
 	@PostMapping(ApiEndPoints.LOGIN_URL)
-	public ResponseEntity<ResponseStatus> fetchUser(@RequestBody LoginRequestModel loginRequestModel)
-			throws Exception {
-		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE,
-				Error.NO_ERROR.getErrorCode(), userManagementService.fetchUser(loginRequestModel)), HttpStatus.OK);
+	public ResponseEntity<ResponseStatus> fetchUser(@RequestBody LoginRequestModel loginRequestModel) throws Exception {
+		return new ResponseEntity<ResponseStatus>(new UserEntityResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				userManagementService.fetchUser(loginRequestModel)), HttpStatus.OK);
+	}
+
+	@ApiOperation(value = ApiEndPoints.SEARCH_USER_DESC, response = UserEntityListResponse.class)
+	@GetMapping(ApiEndPoints.SEARCH_USER_URL)
+	public ResponseEntity<ResponseStatus> searchUser(@PathVariable("keyword") String keyword) throws Exception {
+		return new ResponseEntity<ResponseStatus>(new UserEntityListResponse(Boolean.TRUE,
+				Error.NO_ERROR.getErrorCode(), userManagementService.searchUsers(keyword)), HttpStatus.OK);
 	}
 }

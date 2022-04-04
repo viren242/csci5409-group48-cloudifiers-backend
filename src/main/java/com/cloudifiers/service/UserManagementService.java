@@ -1,5 +1,7 @@
 package com.cloudifiers.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,10 @@ public class UserManagementService implements IUserManagementService {
 	@Override
 	public UserEntity saveUser(UserEntity userEntity) {
 		return userRepository.save(userEntity);
+	}
+
+	@Override
+	public List<UserEntity> searchUsers(String keyword) {
+		return userRepository.searchUser(keyword);
 	}
 }
