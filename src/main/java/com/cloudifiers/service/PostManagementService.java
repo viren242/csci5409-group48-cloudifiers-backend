@@ -45,6 +45,11 @@ public class PostManagementService implements IPostManagementService {
 	}
 
 	@Override
+	public List<PostEntity> fetchPostByUserId(Integer userId) {
+		return postRepository.getPostsByUserId(userId);
+	}
+	
+	@Override
 	public void deletePost(Integer postId) {
 		postRepository.deleteById(postId);
 	}
