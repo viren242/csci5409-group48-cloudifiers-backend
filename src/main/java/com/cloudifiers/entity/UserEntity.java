@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Entity
-@Table(name = "USER", schema = "CLOUDIFIERS")
+@Table(name = "USER")
 @Data
 public class UserEntity {
 
