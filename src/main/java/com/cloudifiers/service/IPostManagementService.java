@@ -12,6 +12,8 @@ public interface IPostManagementService {
 	public void addPost(PostEntity postEntity);
 	
 	public PostEntity fetchPost(Integer postId);
+	
+	public List<PostEntity> fetchPostByUserId(Integer userId);
 
 	public void deletePost(Integer postId);
 

@@ -19,23 +19,23 @@ import com.google.gson.Gson;
 public class SecretManagerConfig {
 
 	// aws secret manager credentials
-	@Value("${cloud.aws.secret-manager.secret-name}")
+	@Value("${cloud.aws.secret-manager.secret-name:default}")
 	private String secretName;
 
-	@Value("${cloud.aws.secret-manager.secret-region}")
+	@Value("${cloud.aws.secret-manager.secret-region:default}")
 	private String secretRegion;
 
 	// aws cloud credentials
-	@Value("${cloud.aws.credentials.secret-access-key}")
+	@Value("${cloud.aws.credentials.secret-access-key:default}")
 	private String secretAccessKey;
 
-	@Value("${cloud.aws.credentials.access-key-id}")
+	@Value("${cloud.aws.credentials.access-key-id:default}")
 	private String accessKeyId;
 
-	@Value("${cloud.aws.credentials.session-token}")
+	@Value("${cloud.aws.credentials.session-token:default}")
 	private String sessionToken;
 
-	@Value("${cloud.aws.region.static}")
+	@Value("${cloud.aws.region.static:default}")
 	private String region;
 
 	@Autowired
@@ -62,8 +62,21 @@ public class SecretManagerConfig {
 				databaseSecret = gson.fromJson(secret, DatabaseSecret.class);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Cannot connect to remote database instance.");
+			databaseSecret = getLocalDatabase();
 		}
+		return databaseSecret;
+	}
+
+	private DatabaseSecret getLocalDatabase() {
+		DatabaseSecret databaseSecret = new DatabaseSecret();
+		databaseSecret.setDatabaseDriver("com.mysql.cj.jdbc.Driver");
+		databaseSecret.setUsername("root");
+		databaseSecret.setPassword("Password@root");
+		databaseSecret.setDatabaseName("cloudifiers");
+		databaseSecret.setEngine("mysql");
+		databaseSecret.setHost("localhost");
+		databaseSecret.setPort("3306");
 		return databaseSecret;
 	}
 }
