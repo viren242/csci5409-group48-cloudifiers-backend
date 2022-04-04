@@ -36,6 +36,9 @@ public class CloudifiersConstants {
 		public static final String FETCH_POST_URL = "/post/{postId}";
 		public static final String FETCH_POST_DESC = "Fetch existing post using post id.";
 		
+		public static final String FETCH_POSTS_URL = "/post/user/{userId}";
+		public static final String FETCH_POSTS_DESC = "Retrieves all the posts created by user with provided userId";
+		
 		public static final String DELETE_POST_URL = "/post/{postId}";
 		public static final String DELETE_POST_DESC = "Delete existing post using post id.";
 		
@@ -74,6 +77,7 @@ public class CloudifiersConstants {
 				+ "or CONCAT (u.lastName, ' ', u.firstName) like %:keyword%";
 		public static final String FETCH_USERS_LIKED_POST_QUERY = "SELECT u FROM UserEntity u WHERE u.userId IN (SELECT l.likeId.userId FROM LikeEntity l WHERE l.likeId.postId = :postId)";
 		public static final String FIND_COMMENT_BY_POST_ID_QUERY = "SELECT c FROM CommentEntity c WHERE c.postId = :postId";
+		public static final String GET_POSTS_BY_USER_ID_QUERY = "SELECT p FROM PostEntity p WHERE p.userId = :userId";
 	}
 	
 	public static class ParameterConstants {
