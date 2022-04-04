@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "LIKES", schema = "CLOUDIFIERS")
+@Table(name = "LIKES")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
