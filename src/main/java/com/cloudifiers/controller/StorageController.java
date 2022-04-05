@@ -5,6 +5,7 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = ControllerInfo.STORAGE_CONTROLLER_VALUE, description = ControllerInfo.STORAGE_CONTROLLER_DESC)
 @RestController
 @RequestMapping(CloudifiersConstants.BASE_API_URL)
+@CrossOrigin
 public class StorageController {
 
 	@Autowired
