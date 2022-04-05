@@ -46,4 +46,8 @@ public class PostEntity {
 	@Column(name = "LIKES")
 	@JsonProperty("likes")
 	private Integer likes = 0;
+	
+	@Column(name = "DESCRIPTION")
+	@JsonProperty("description")
+	private String description;
 }
