@@ -2,10 +2,10 @@ package com.cloudifiers.service;
 
 import java.util.List;
 
-import com.cloudifiers.entity.PostEntity;
+import com.cloudifiers.model.PostModel;
 
 public interface ITimelineManagementService {
 
-	public List<PostEntity> generateTimeline(Integer userId);
+	public List<PostModel> generateTimeline(Integer userId);
 
 }
