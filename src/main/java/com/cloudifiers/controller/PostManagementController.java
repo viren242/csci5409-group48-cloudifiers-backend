@@ -18,10 +18,10 @@ import com.cloudifiers.entity.CommentEntity;
 import com.cloudifiers.entity.PostEntity;
 import com.cloudifiers.model.CommentListResponse;
 import com.cloudifiers.model.Error;
-import com.cloudifiers.model.StatusResponse;
-import com.cloudifiers.model.PostEntityListResponse;
 import com.cloudifiers.model.PostEntityResponse;
+import com.cloudifiers.model.PostModelListResponse;
 import com.cloudifiers.model.ResponseStatus;
+import com.cloudifiers.model.StatusResponse;
 import com.cloudifiers.model.TotalLikeResponse;
 import com.cloudifiers.model.UserEntityListResponse;
 import com.cloudifiers.service.IPostManagementService;
@@ -51,11 +51,11 @@ public class PostManagementController {
 				postManagementService.fetchPost(postId)), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = ApiEndPoints.FETCH_POSTS_DESC, response = PostEntityListResponse.class)
+	@ApiOperation(value = ApiEndPoints.FETCH_POSTS_DESC, response = PostModelListResponse.class)
 	@GetMapping(ApiEndPoints.FETCH_POSTS_URL)
 	public ResponseEntity<ResponseStatus> getPostsByUserId(@PathVariable("userId") Integer userId) throws Exception {
-		return new ResponseEntity<ResponseStatus>(new PostEntityListResponse(Boolean.TRUE,
-				Error.NO_ERROR.getErrorCode(), postManagementService.fetchPostByUserId(userId)), HttpStatus.OK);
+		return new ResponseEntity<ResponseStatus>(new PostModelListResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				postManagementService.fetchPostByUserId(userId)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.DELETE_POST_DESC, response = ResponseStatus.class)
