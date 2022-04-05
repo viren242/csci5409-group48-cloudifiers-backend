@@ -18,7 +18,7 @@ import com.cloudifiers.entity.CommentEntity;
 import com.cloudifiers.entity.PostEntity;
 import com.cloudifiers.model.CommentListResponse;
 import com.cloudifiers.model.Error;
-import com.cloudifiers.model.LikeStatusResponse;
+import com.cloudifiers.model.StatusResponse;
 import com.cloudifiers.model.PostEntityListResponse;
 import com.cloudifiers.model.PostEntityResponse;
 import com.cloudifiers.model.ResponseStatus;
@@ -84,11 +84,11 @@ public class PostManagementController {
 				HttpStatus.OK);
 	}
 
-	@ApiOperation(value = ApiEndPoints.CHECK_LIKE_STATUS_DESC, response = LikeStatusResponse.class)
+	@ApiOperation(value = ApiEndPoints.CHECK_LIKE_STATUS_DESC, response = StatusResponse.class)
 	@GetMapping(ApiEndPoints.CHECK_LIKE_STATUS_URL)
 	public ResponseEntity<ResponseStatus> checkLikeStatus(@PathVariable("postId") Integer postId,
 			@PathVariable("userId") Integer userId) throws Exception {
-		return new ResponseEntity<ResponseStatus>(new LikeStatusResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+		return new ResponseEntity<ResponseStatus>(new StatusResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
 				postManagementService.checkLikeStatus(postId, userId)), HttpStatus.OK);
 	}
 
