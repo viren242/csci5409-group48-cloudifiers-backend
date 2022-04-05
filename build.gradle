@@ -37,6 +37,7 @@ dependencies {
 	implementation group: 'com.amazonaws', name: 'aws-java-sdk-secretsmanager', version: '1.12.184'
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
-
+		
+	implementation 'org.springframework.cloud:spring-cloud-aws-core:2.2.6.RELEASE'
 }
 

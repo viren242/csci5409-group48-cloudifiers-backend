@@ -59,11 +59,21 @@ public class CloudifiersConstants {
 		
 		public static final String FETCH_COMMNETS_URL = "/post/comment/{postId}";
 		public static final String FETCH_COMMENTS_DESC = "Fetches all the comment for post with given postId.";
+		
+		// Storage
+		public static final String UPLOAD_FILE_URL = "/file/upload";
+		public static final String UPLOAD_FILE_DESC = "Uploads file into s3 bucket and returns url of the uploaded file.";
+		
+		public static final String REMOVE_FILE_URL = "/file/remove/{fileName}";
+		public static final String REMOVE_FILE_DESC = "Remove file from s3 bucket"; 
 	}	
 	
 	public static class ControllerInfo {
 		public static final String USER_MANAGEMENT_CONTROLLER_VALUE = "User Management Controller";
 		public static final String USER_MANAGEMENT_CONTROLLER_DESC = "Performs save, update, and delete operations on user";
+		
+		public static final String STORAGE_CONTROLLER_VALUE = "Storage Controller";
+		public static final String STORAGE_CONTROLLER_DESC = "Performs file upload and delete operation in S bucket.";
 	}
 	
 	public static class DatabaseConstants {

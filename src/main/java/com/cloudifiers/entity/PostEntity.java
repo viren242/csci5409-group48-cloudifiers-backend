@@ -34,9 +34,13 @@ public class PostEntity {
 	@JsonProperty("postUrl")
 	private String postUrl;
 
+	@Column(name = "FILE_NAME")
+	@JsonProperty("fileName")
+	private String fileName;
+
 	@Column(name = "CREATED_AT")
 	@JsonProperty("createdAt")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 
 	@Column(name = "LIKES")
