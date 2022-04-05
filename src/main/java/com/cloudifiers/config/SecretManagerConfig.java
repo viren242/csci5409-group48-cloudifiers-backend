@@ -65,6 +65,7 @@ public class SecretManagerConfig {
 			System.err.println("Cannot connect to remote database instance.");
 			databaseSecret = getLocalDatabase();
 		}
+		System.out.println(databaseSecret);
 		return databaseSecret;
 	}
 
