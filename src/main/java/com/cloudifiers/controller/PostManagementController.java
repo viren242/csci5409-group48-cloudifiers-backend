@@ -18,6 +18,7 @@ import com.cloudifiers.entity.CommentEntity;
 import com.cloudifiers.entity.PostEntity;
 import com.cloudifiers.model.CommentListResponse;
 import com.cloudifiers.model.Error;
+import com.cloudifiers.model.LikeStatusResponse;
 import com.cloudifiers.model.PostEntityListResponse;
 import com.cloudifiers.model.PostEntityResponse;
 import com.cloudifiers.model.ResponseStatus;
@@ -49,12 +50,12 @@ public class PostManagementController {
 		return new ResponseEntity<ResponseStatus>(new PostEntityResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
 				postManagementService.fetchPost(postId)), HttpStatus.OK);
 	}
-	
+
 	@ApiOperation(value = ApiEndPoints.FETCH_POSTS_DESC, response = PostEntityListResponse.class)
 	@GetMapping(ApiEndPoints.FETCH_POSTS_URL)
 	public ResponseEntity<ResponseStatus> getPostsByUserId(@PathVariable("userId") Integer userId) throws Exception {
-		return new ResponseEntity<ResponseStatus>(new PostEntityListResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
-				postManagementService.fetchPostByUserId(userId)), HttpStatus.OK);
+		return new ResponseEntity<ResponseStatus>(new PostEntityListResponse(Boolean.TRUE,
+				Error.NO_ERROR.getErrorCode(), postManagementService.fetchPostByUserId(userId)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.DELETE_POST_DESC, response = ResponseStatus.class)
@@ -72,6 +73,23 @@ public class PostManagementController {
 		postManagementService.likePost(postId, userId);
 		return new ResponseEntity<ResponseStatus>(new ResponseStatus(Boolean.TRUE, Error.NO_ERROR.getErrorCode()),
 				HttpStatus.OK);
+	}
+
+	@ApiOperation(value = ApiEndPoints.DISLIKE_POST_DESC, response = ResponseStatus.class)
+	@DeleteMapping(ApiEndPoints.DISLIKE_POST_URL)
+	public ResponseEntity<ResponseStatus> dislikePost(@PathVariable("postId") Integer postId,
+			@PathVariable("userId") Integer userId) throws Exception {
+		postManagementService.dislikePost(postId, userId);
+		return new ResponseEntity<ResponseStatus>(new ResponseStatus(Boolean.TRUE, Error.NO_ERROR.getErrorCode()),
+				HttpStatus.OK);
+	}
+
+	@ApiOperation(value = ApiEndPoints.CHECK_LIKE_STATUS_DESC, response = LikeStatusResponse.class)
+	@GetMapping(ApiEndPoints.CHECK_LIKE_STATUS_URL)
+	public ResponseEntity<ResponseStatus> checkLikeStatus(@PathVariable("postId") Integer postId,
+			@PathVariable("userId") Integer userId) throws Exception {
+		return new ResponseEntity<ResponseStatus>(new LikeStatusResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				postManagementService.checkLikeStatus(postId, userId)), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = ApiEndPoints.GET_TOTAL_LIKES_DESC, response = TotalLikeResponse.class)

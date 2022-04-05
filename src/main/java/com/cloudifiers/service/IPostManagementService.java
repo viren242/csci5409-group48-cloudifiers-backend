@@ -18,6 +18,10 @@ public interface IPostManagementService {
 	public void deletePost(Integer postId);
 
 	public void likePost(Integer postId, Integer userId);
+	
+	public void dislikePost(Integer postId, Integer userId);
+	
+	public Boolean checkLikeStatus(Integer postId, Integer userId);
 
 	public Integer getTotalLikes(Integer postId);
 
