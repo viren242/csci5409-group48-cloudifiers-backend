@@ -16,5 +16,8 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer> {
 
 	@Query(value = DatabaseConstants.GET_POSTS_BY_USER_ID_QUERY)
 	public List<PostEntity> getPostsByUserId(@Param(ParameterConstants.USER_ID) Integer userId);
+	
+	@Query(value = DatabaseConstants.GET_TIMELINE_QUERY)
+	public List<PostEntity> getTimeline(@Param(ParameterConstants.USER_ID) Integer userId);
 
 }
