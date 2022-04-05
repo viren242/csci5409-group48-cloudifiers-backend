@@ -1,6 +1,7 @@
 package com.cloudifiers.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,4 @@ public interface LikeRepository extends JpaRepository<LikeEntity, LikeId> {
 	
 	@Query(value = DatabaseConstants.FETCH_USERS_LIKED_POST_QUERY)
 	public List<UserEntity> getUsersLikedPost(@Param(ParameterConstants.POST_ID) Integer postId);
-	
 }

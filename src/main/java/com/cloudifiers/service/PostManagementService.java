@@ -48,7 +48,7 @@ public class PostManagementService implements IPostManagementService {
 	public List<PostEntity> fetchPostByUserId(Integer userId) {
 		return postRepository.getPostsByUserId(userId);
 	}
-	
+
 	@Override
 	public void deletePost(Integer postId) {
 		postRepository.deleteById(postId);
@@ -60,10 +60,28 @@ public class PostManagementService implements IPostManagementService {
 		// Increase likes value by one
 		PostEntity postEntity = postRepository.findById(postId).get();
 		postEntity.setLikes(postEntity.getLikes() + 1);
+		postRepository.save(postEntity);
 
 		// Add like
 		LikeEntity likeEntity = new LikeEntity(new LikeId(postId, userId));
 		likeRepository.save(likeEntity);
+	}
+
+	@Override
+	@Transactional
+	public void dislikePost(Integer postId, Integer userId) {
+		// Decrease like value by one
+		PostEntity postEntity = postRepository.findById(postId).get();
+		postEntity.setLikes(postEntity.getLikes() - 1);
+		postRepository.save(postEntity);
+
+		// remove like
+		likeRepository.deleteById(new LikeId(postId, userId));
+	}
+
+	@Override
+	public Boolean checkLikeStatus(Integer postId, Integer userId) {
+		return likeRepository.existsById(new LikeId(postId, userId));
 	}
 
 	@Override

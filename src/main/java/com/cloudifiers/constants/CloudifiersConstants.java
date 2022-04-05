@@ -45,6 +45,12 @@ public class CloudifiersConstants {
 		public static final String LIKE_POST_URL = "/post/like/{postId}/{userId}";
 		public static final String LIKE_POST_DESC = "Performs the like operation when userId likes the post with given postId.";
 		
+		public static final String DISLIKE_POST_URL = "/post/dislike/{postId}/{userId}";
+		public static final String DISLIKE_POST_DESC = "Performs the dislike operatioin when userId dislikes the post with given postId.";
+		
+		public static final String CHECK_LIKE_STATUS_URL = "/post/like/status/{postId}/{userId}";
+		public static final String CHECK_LIKE_STATUS_DESC = "Checks whether the given user has liked the given post.";
+		
 		public static final String GET_TOTAL_LIKES_URL = "/post/like/total/{postId}";
 		public static final String GET_TOTAL_LIKES_DESC = "Fetches count of total likes of post with given postId.";
 		
