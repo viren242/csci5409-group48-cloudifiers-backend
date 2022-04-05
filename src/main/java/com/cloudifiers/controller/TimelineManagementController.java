@@ -6,8 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.cloudifiers.constants.CloudifiersConstants;
 import com.cloudifiers.constants.CloudifiersConstants.ApiEndPoints;
 import com.cloudifiers.model.Error;
 import com.cloudifiers.model.PostModelListResponse;
@@ -18,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin
+@RequestMapping(CloudifiersConstants.BASE_API_URL)
 public class TimelineManagementController {
 
 	@Autowired
