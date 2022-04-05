@@ -65,7 +65,11 @@ public class CloudifiersConstants {
 		public static final String UPLOAD_FILE_DESC = "Uploads file into s3 bucket and returns url of the uploaded file.";
 		
 		public static final String REMOVE_FILE_URL = "/file/remove/{fileName}";
-		public static final String REMOVE_FILE_DESC = "Remove file from s3 bucket"; 
+		public static final String REMOVE_FILE_DESC = "Remove file from s3 bucket."; 
+		
+		// timeline
+		public static final String GENERATE_TIMELINE_URL = "/timeline/{userId}";
+		public static final String GENERATE_TIMELINE_DESC = "Generates timeline for user with provided userId.";
 	}	
 	
 	public static class ControllerInfo {
@@ -88,6 +92,7 @@ public class CloudifiersConstants {
 		public static final String FETCH_USERS_LIKED_POST_QUERY = "SELECT u FROM UserEntity u WHERE u.userId IN (SELECT l.likeId.userId FROM LikeEntity l WHERE l.likeId.postId = :postId)";
 		public static final String FIND_COMMENT_BY_POST_ID_QUERY = "SELECT c FROM CommentEntity c WHERE c.postId = :postId";
 		public static final String GET_POSTS_BY_USER_ID_QUERY = "SELECT p FROM PostEntity p WHERE p.userId = :userId";
+		public static final String GET_TIMELINE_QUERY = "SELECT p from PostEntity p WHERE p.userId IN (SELECT f.friendId.user2Id FROM FriendEntity f WHERE f.friendId.user1Id = :userId)";
 	}
 	
 	public static class ParameterConstants {
