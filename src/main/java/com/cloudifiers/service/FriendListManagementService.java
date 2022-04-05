@@ -53,4 +53,9 @@ public class FriendListManagementService implements IFriendListManagementService
 		return null;
 	}
 
+	@Override
+	public Boolean checkFriendStatus(Integer user1Id, Integer user2Id) {
+		return friendListManagementRepository.existsById(new FriendId(user1Id, user2Id));
+	}
+
 }

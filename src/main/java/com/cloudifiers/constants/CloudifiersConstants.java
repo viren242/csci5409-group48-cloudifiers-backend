@@ -29,6 +29,9 @@ public class CloudifiersConstants {
 		public static final String GET_FRIENDS_URL = "/friend/list/{userId}";
 		public static final String GET_FRIENDS_DESC = "Find list of friends of user userId";
 		
+		public static final String CHECK_FRIEND_STATUS_URL = "/friend/status/{user1Id}/{user2Id}";
+		public static final String CHECK_FRIEND_STATUS_DESC = "Checks whether the user2Id is in the list of user1 friends.";
+		
 		// post management
 		public static final String ADD_POST_URL = "/post/add";
 		public static final String ADD_POST_DESC = "Creates a new Post.";

@@ -13,4 +13,5 @@ public interface IFriendListManagementService {
 	
 	public List<UserEntity> getFriends(Integer userId);
 	
+	public Boolean checkFriendStatus(Integer user1Id, Integer user2Id);
 }

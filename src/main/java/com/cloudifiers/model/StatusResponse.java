@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LikeStatusResponse extends ResponseStatus {
+public class StatusResponse extends ResponseStatus {
 
-	@JsonProperty("isLiked")
-	private Boolean isLiked;
+	@JsonProperty("status")
+	private Boolean status;
 
-	public LikeStatusResponse(Boolean success, String errorCode, Boolean isLiked) {
+	public StatusResponse(Boolean success, String errorCode, Boolean status) {
 		super(success, errorCode);
-		this.isLiked = isLiked;
+		this.status = status;
 	}
 }
