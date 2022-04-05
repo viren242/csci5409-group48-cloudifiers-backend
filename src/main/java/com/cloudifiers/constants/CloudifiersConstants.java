@@ -93,11 +93,11 @@ public class CloudifiersConstants {
 		public static final String FETCH_USER_QUERY = "SELECT u FROM UserEntity u WHERE u.email = :email AND u.password = :password";
 		public static final String FETCH_FRIENDS_QUERY = "SELECT u FROM FriendEntity f LEFT JOIN UserEntity u ON f.friendId.user2Id = u.userId WHERE f.friendId.user1Id = :userId";
 		public static final String SEARCH_USER_QUERY = "SELECT u FROM UserEntity u WHERE "
-				+ "u.email like %:keyword% "
-				+ "or u.firstName like %:keyword% "
-				+ "or u.lastName like %:keyword% "
-				+ "or CONCAT(u.firstName, ' ', u.lastName) like %:keyword% "
-				+ "or CONCAT (u.lastName, ' ', u.firstName) like %:keyword%";
+				+ "lower(u.email) like %:keyword% "
+				+ "or lower(u.firstName) like %:keyword% "
+				+ "or lower(u.lastName) like %:keyword% "
+				+ "or CONCAT(lower(u.firstName), ' ', lower(u.lastName)) like %:keyword% "
+				+ "or CONCAT(lower(u.lastName), ' ', lower(u.firstName)) like %:keyword%";
 		public static final String FETCH_USERS_LIKED_POST_QUERY = "SELECT u FROM UserEntity u WHERE u.userId IN (SELECT l.likeId.userId FROM LikeEntity l WHERE l.likeId.postId = :postId)";
 		public static final String FIND_COMMENT_BY_POST_ID_QUERY = "SELECT c FROM CommentEntity c WHERE c.postId = :postId";
 		public static final String GET_POSTS_BY_USER_ID_QUERY = "SELECT p FROM PostEntity p WHERE p.userId = :userId";

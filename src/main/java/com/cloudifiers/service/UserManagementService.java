@@ -34,6 +34,6 @@ public class UserManagementService implements IUserManagementService {
 
 	@Override
 	public List<UserEntity> searchUsers(String keyword) {
-		return userRepository.searchUser(keyword);
+		return userRepository.searchUser(keyword.toLowerCase());
 	}
 }
