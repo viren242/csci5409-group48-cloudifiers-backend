@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudifiers.constants.CloudifiersConstants.ApiEndPoints;
 import com.cloudifiers.model.Error;
-import com.cloudifiers.model.PostEntityListResponse;
+import com.cloudifiers.model.PostModelListResponse;
 import com.cloudifiers.model.ResponseStatus;
 import com.cloudifiers.service.ITimelineManagementService;
 
@@ -23,10 +23,10 @@ public class TimelineManagementController {
 	@Autowired
 	private ITimelineManagementService timelineManagementService;
 
-	@ApiOperation(value = ApiEndPoints.GENERATE_TIMELINE_DESC, response = PostEntityListResponse.class)
+	@ApiOperation(value = ApiEndPoints.GENERATE_TIMELINE_DESC, response = PostModelListResponse.class)
 	@GetMapping(ApiEndPoints.GENERATE_TIMELINE_URL)
 	public ResponseEntity<ResponseStatus> getTimeline(@PathVariable("userId") Integer userId) {
-		return new ResponseEntity<ResponseStatus>(new PostEntityListResponse(Boolean.TRUE,
-				Error.NO_ERROR.getErrorCode(), timelineManagementService.generateTimeline(userId)), HttpStatus.OK);
+		return new ResponseEntity<ResponseStatus>(new PostModelListResponse(Boolean.TRUE, Error.NO_ERROR.getErrorCode(),
+				timelineManagementService.generateTimeline(userId)), HttpStatus.OK);
 	}
 }

@@ -14,6 +14,7 @@ import com.cloudifiers.entity.LikeEntity.LikeId;
 import com.cloudifiers.entity.PostEntity;
 import com.cloudifiers.entity.UserEntity;
 import com.cloudifiers.model.CommentModel;
+import com.cloudifiers.model.PostModel;
 import com.cloudifiers.repository.CommentRepository;
 import com.cloudifiers.repository.LikeRepository;
 import com.cloudifiers.repository.PostRepository;
@@ -45,8 +46,10 @@ public class PostManagementService implements IPostManagementService {
 	}
 
 	@Override
-	public List<PostEntity> fetchPostByUserId(Integer userId) {
-		return postRepository.getPostsByUserId(userId);
+	public List<PostModel> fetchPostByUserId(Integer userId) {
+		return postRepository.getPostsByUserId(userId).stream().map(postEntity -> {
+			return new PostModel(postEntity, userRepository.findById(postEntity.getUserId()).get());
+		}).collect(Collectors.toList());
 	}
 
 	@Override
