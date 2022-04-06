@@ -16,6 +16,9 @@ public class UserManagementService implements IUserManagementService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private IAmazonSNSService snsService;
+
 	@Override
 	public UserEntity fetchUser(Integer userId) throws Exception {
 		return userRepository.findById(userId).orElseThrow(() -> new NoUserFoundException());
@@ -23,13 +26,20 @@ public class UserManagementService implements IUserManagementService {
 
 	@Override
 	public UserEntity fetchUser(LoginRequestModel loginRequestModel) throws Exception {
-		return userRepository.fetchUser(loginRequestModel.getEmail(), loginRequestModel.getPassword())
+		UserEntity userEntity = userRepository.fetchUser(loginRequestModel.getEmail(), loginRequestModel.getPassword())
 				.orElseThrow(() -> new NoUserFoundException());
+		snsService.notify(userEntity.getEmail());
+		return userEntity;
 	}
 
 	@Override
 	public UserEntity saveUser(UserEntity userEntity) {
-		return userRepository.save(userEntity);
+		if (userEntity.getUserId() == null) {
+			userEntity = userRepository.save(userEntity);
+			System.out.println(snsService.createTopic(userEntity.getUserId().toString()));
+//			System.out.println(snsService.subscribe(userEntity.getEmail(), userEntity.getEmail()));
+		}
+		return userEntity;
 	}
 
 	@Override

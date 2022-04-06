@@ -34,7 +34,7 @@ public class UserEntity {
 	@JsonProperty("lastName")
 	private String lastName;
 
-	@Column(name = "EMAIL", length = 200, nullable = false, unique = true)
+	@Column(name = "EMAIL", length = 200, nullable = false, unique = false)
 	@JsonProperty("email")
 	private String email;
 
