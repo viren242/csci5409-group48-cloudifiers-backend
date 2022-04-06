@@ -45,4 +45,8 @@ public class UserEntity {
 	@Column(name = "GENDER_ID")
 	@JsonProperty("genderId")
 	private Integer genderId;
+	
+	@Column(name = "TOPIC_ARN")
+	@JsonProperty("topicArn")
+	private String topicArn;
 }

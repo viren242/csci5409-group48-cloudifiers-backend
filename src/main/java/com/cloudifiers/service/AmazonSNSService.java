@@ -29,8 +29,8 @@ public class AmazonSNSService implements IAmazonSNSService {
 	}
 
 	@Override
-	public PublishResult notify(String topicId) {
-		return snsClient.publish(topicId, "You just logged in. If it is not you, please change your credentials.",
+	public PublishResult notify(String topicArn) {
+		return snsClient.publish(topicArn, "You just logged in. If it is not you, please change your credentials.",
 				"Login Notification");
 	}
 
