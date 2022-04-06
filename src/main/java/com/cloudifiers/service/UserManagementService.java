@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.sns.model.CreateTopicResult;
 import com.cloudifiers.entity.UserEntity;
 import com.cloudifiers.exception.NoUserFoundException;
 import com.cloudifiers.model.LoginRequestModel;
@@ -28,7 +29,7 @@ public class UserManagementService implements IUserManagementService {
 	public UserEntity fetchUser(LoginRequestModel loginRequestModel) throws Exception {
 		UserEntity userEntity = userRepository.fetchUser(loginRequestModel.getEmail(), loginRequestModel.getPassword())
 				.orElseThrow(() -> new NoUserFoundException());
-		snsService.notify(userEntity.getEmail());
+		snsService.notify(userEntity.getTopicArn());
 		return userEntity;
 	}
 
@@ -36,8 +37,10 @@ public class UserManagementService implements IUserManagementService {
 	public UserEntity saveUser(UserEntity userEntity) {
 		if (userEntity.getUserId() == null) {
 			userEntity = userRepository.save(userEntity);
-			System.out.println(snsService.createTopic(userEntity.getUserId().toString()));
-//			System.out.println(snsService.subscribe(userEntity.getEmail(), userEntity.getEmail()));
+			CreateTopicResult result = snsService.createTopic(userEntity.getUserId().toString());
+			userEntity.setTopicArn(result.getTopicArn());
+			userRepository.save(userEntity);
+			snsService.subscribe(userEntity.getTopicArn(), userEntity.getEmail());
 		}
 		return userEntity;
 	}
