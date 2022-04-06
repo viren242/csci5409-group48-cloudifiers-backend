@@ -43,6 +43,8 @@ public class UserManagementService implements IUserManagementService {
 			userEntity.setTopicArn(result.getTopicArn());
 			userRepository.save(userEntity);
 			snsService.subscribe(userEntity.getTopicArn(), userEntity.getEmail());
+		} else {
+			userEntity = userRepository.save(userEntity);
 		}
 		return userEntity;
 	}
