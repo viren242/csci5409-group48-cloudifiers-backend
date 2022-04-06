@@ -29,7 +29,9 @@ public class UserManagementService implements IUserManagementService {
 	public UserEntity fetchUser(LoginRequestModel loginRequestModel) throws Exception {
 		UserEntity userEntity = userRepository.fetchUser(loginRequestModel.getEmail(), loginRequestModel.getPassword())
 				.orElseThrow(() -> new NoUserFoundException());
-		snsService.notify(userEntity.getTopicArn());
+		if(userEntity.getTopicArn() != null) {
+			snsService.notify(userEntity.getTopicArn());
+		}
 		return userEntity;
 	}
 
