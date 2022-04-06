@@ -49,9 +49,10 @@ public class StorageController {
 		return new ResponseEntity<ResponseStatus>(fileUploadResponse, HttpStatus.OK);
 	}
 
-	@ApiOperation(value = ApiEndPoints.REMOVE_FILE_DESC, response = String.class)
+	@ApiOperation(value = ApiEndPoints.REMOVE_FILE_DESC, response = ResponseStatus.class)
 	@DeleteMapping(ApiEndPoints.REMOVE_FILE_URL)
-	public void removeFile(@PathVariable("fileName") String fileName) {
+	public ResponseEntity<ResponseStatus> removeFile(@PathVariable("fileName") String fileName) {
 		storageService.deleteFile(fileName);
+		return new ResponseEntity<ResponseStatus>(new ResponseStatus(Boolean.TRUE, Error.NO_ERROR.getErrorCode()), HttpStatus.OK);
 	}
 }
