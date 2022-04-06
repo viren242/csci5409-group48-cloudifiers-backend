@@ -39,5 +39,7 @@ dependencies {
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
 		
 	implementation 'org.springframework.cloud:spring-cloud-aws-core:2.2.6.RELEASE'
+	
+	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sns
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-sns', version: '1.12.192'
 }
-
